@@ -5,7 +5,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5398197981973799"
      crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=<>, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="stylesheet" href="STYLE.CSS">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,7 @@
                         class='bx bxl-linkedin'></i></a>
                 <a href="https://www.instagram.com/lakshya.png/" target="_blank" style="--i:8"><i
                         class='bx bxl-instagram'></i></a>
-                <a href="#https://x.com/Lak5hya30" target="_blank" style="--i:9"><i class='bx bxl-twitter'></i></a>
+                <a href="https://x.com/Lak5hya30" target="_blank" style="--i:9"><i class='bx bxl-twitter'></i></a>
                 <a href="#contact" style="--i:10"><i class='bx bxl-gmail'></i></a>
             </div>
             <div>
@@ -266,6 +266,23 @@
 
         });
     </script>
+
+    <footer class="footer">
+        <p>&copy; 2025 Lakshya Gupta | All Rights Reserved</p>
+    </footer>
+
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
+
 
 </html>
