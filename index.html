@@ -23,6 +23,10 @@
 
 <body>
 
+<!-- Back to Top Button -->
+<button id="backToTop" title="Go to top">&#8679;</button>
+
+
 <div id="preloader">
     <div class="loader"></div>
 </div>
@@ -317,17 +321,39 @@
         });
     });
 
+    // Preloader
     window.addEventListener('load', () => {
         document.getElementById('preloader').style.display = 'none';
     });
 
+    // Theme toggle
     const toggleSwitch = document.getElementById('theme-switch');
     toggleSwitch.addEventListener('change', () => {
         document.body.classList.toggle('light-mode');
     });
+
+    // AOS init
     AOS.init({
         duration: 1200,
     });
 </script>
+
+<script>
+// Back to Top Button Script
+window.onscroll = function() {scrollFunction()};
+function scrollFunction() {
+  const btn = document.getElementById("backToTop");
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+}
+function topFunction() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.getElementById("backToTop").addEventListener("click", topFunction);
+</script>
+
 </body>
 </html>
