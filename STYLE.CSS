@@ -786,3 +786,112 @@ body{
     }
 }
 
+/* Theme toggle button */
+.theme-toggle {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+}
+.theme-toggle input {
+    display: none;
+}
+.theme-toggle label {
+    cursor: pointer;
+    font-size: 24px;
+    color: #0ef;
+}
+.theme-toggle i {
+    margin-left: 5px;
+}
+
+/* Light mode overrides */
+body.light-mode {
+    background-color: #f2f2f2;
+    color: #000;
+}
+body.light-mode .header,
+body.light-mode .footer {
+    background-color: #ddd;
+    color: #000;
+}
+body.light-mode .navbar a {
+    color: #000;
+}
+body.light-mode .btn-box,
+body.light-mode .read {
+    color: #f2f2f2;
+    background-color: #000;
+}
+body.light-mode .btn-box:hover,
+body.light-mode .read:hover {
+    box-shadow: 0 0 10px #000;
+}
+
+/* Preloader */
+#preloader {
+    background: #081b29;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loader {
+    border: 10px solid #0ef;
+    border-top: 10px solid #081b29;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+body.light-mode {
+    background-color: #f2f2f2;
+    color: #000;
+}
+
+body.light-mode .header,
+body.light-mode .footer {
+    background-color: #ddd;
+    color: #000;
+}
+
+body.light-mode .navbar a,
+body.light-mode .about-text h2,
+body.light-mode .about-text h4,
+body.light-mode .about-text p,
+body.light-mode .sub-title,
+body.light-mode .services-list div h2,
+body.light-mode .services-list div p,
+body.light-mode .heading1,
+body.light-mode .bars .info span,
+body.light-mode .main-text h2,
+body.light-mode .portfolio-content .layer h5,
+body.light-mode .portfolio-content .layer p,
+body.light-mode .contact-text h2,
+body.light-mode .contact-text h4,
+body.light-mode .contact-text p,
+body.light-mode .contact-list li,
+body.light-mode .percentage,
+body.light-mode .text {
+    color: #000 !important;
+}
+
+body.light-mode .btn-box,
+body.light-mode .read,
+body.light-mode .send {
+    background-color: #000;
+    color: #f2f2f2;
+}
+
+body.light-mode .btn-box:hover,
+body.light-mode .read:hover,
+body.light-mode .send:hover {
+    box-shadow: 0 0 10px #000;
+}
+
