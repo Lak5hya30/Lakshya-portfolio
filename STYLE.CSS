@@ -689,3 +689,11 @@ body{
         opacity: 1;
     }
 }
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #051120;
+    color: #ededed;
+    margin-top: 50px;
+}
+
