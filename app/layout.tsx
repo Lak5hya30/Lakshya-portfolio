@@ -49,10 +49,15 @@ const personSchema = {
   sameAs: content.links.map((link) => link.href),
 };
 
+const stripHostInjections = `(function(){var h=document.head,n=h.firstChild,x;while(n){x=n.nextSibling;if((n.nodeType===3&&!n.data.trim())||(n.nodeType===8&&/hosted on Netlify/i.test(n.data)))h.removeChild(n);n=x}})()`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable}`}>
       <head>
+        {/* Some hosts (Netlify) inject a comment and line breaks into <head>; React treats the stray text as a
+            hydration mismatch and re-renders the whole page. Remove them before React hydrates. */}
+        <script dangerouslySetInnerHTML={{ __html: stripHostInjections }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema).replace(/</g, "\\u003c") }} />
       </head>
       <body>{children}</body>
