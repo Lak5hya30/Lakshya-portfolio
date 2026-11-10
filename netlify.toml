@@ -1,6 +1,7 @@
 # Next.js on Netlify needs the Next.js runtime (server action, hourly GitHub cache, OG image).
 [build]
-  command = "npm run build"
+  # Clear Next's build cache first: Turbopack's persistent cache restored by Netlify produced stale CSS.
+  command = "rm -rf .next/cache && npm run build"
   publish = ".next"
 
 [build.environment]
