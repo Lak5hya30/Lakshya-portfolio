@@ -20,7 +20,7 @@ export function validateContact({ name, email, message }: ContactValues) {
   return errors;
 }
 
-export async function submitContact(values: ContactValues & { company: string }) {
+export async function submitContact(values: ContactValues & { company: string; "bot-field": string }) {
   const body = new URLSearchParams({ "form-name": FORM_NAME, ...values });
   const response = await fetch(FORM_ENDPOINT, {
     method: "POST",

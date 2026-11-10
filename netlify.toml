@@ -16,3 +16,6 @@
 # Neon extension ran), so the raw .next folder was published and every page returned 404.
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Security headers (CSP, nosniff, frame, referrer and permissions policies) are set in next.config.ts so they
+# reach the HTML pages served by the Next.js runtime. HSTS is already sent for *.netlify.app.

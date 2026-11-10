@@ -102,16 +102,21 @@ export function Portfolio({ github }: { github: ReactNode }) {
 
   return (
     <div ref={root} className="site-shell">
-      <a className="skip-link" href="#about">Skip to content</a>
+      <a className="skip-link" href="#main">Skip to content</a>
       <SiteHeader />
       <PaletteLauncher />
 
-      <main>
+      <main id="main" tabIndex={-1}>
         <Hero />
 
+        <Projects />
+        <div className="github-band">{github}</div>
+        <Experience ref={timelineLine} />
+        <Skills />
         <section className="about section" id="about" aria-labelledby="about-title">
-          <div className="section-kicker">01 / About</div>
+          <div className="section-kicker">04 / About</div>
           <h2 id="about-title"><RevealText>Engineering with clarity, from interface to system.</RevealText></h2>
+          <p className="about-intro">{content.person.intro}</p>
           <div className="about-grid">
             <p className="about-summary">{content.person.summary}</p>
             <div className="education-block">
@@ -126,12 +131,9 @@ export function Portfolio({ github }: { github: ReactNode }) {
           </div>
         </section>
 
-        <Experience ref={timelineLine} />
-        <Projects />
-        <div className="github-band">{github}</div>
-        <Skills />
-        <Terminal />
         <Contact />
+        {/* Optional personality layer: everything here is also reachable through the normal page. */}
+        <Terminal />
       </main>
 
       <SiteFooter />

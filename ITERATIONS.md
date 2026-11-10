@@ -526,3 +526,34 @@ Still open:
 - Resend keys are needed for the contact form to send.
 - The AI portfolio assistant remains a possible follow-up.
 - The Selected Work section would benefit from real screenshots once the projects have hosted demos.
+
+---
+
+# Round 3: evidence-first upgrades (from the audit and master prompt)
+
+Baseline: production site with three project cards, a dialog-based case study, equal-weight hero CTAs,
+About first, terminal before Contact, no security headers on HTML, and no case-study URLs.
+
+Changed:
+- **Recruiter journey:** hero with one primary CTA (View selected work), résumé secondary, email as a text link;
+  a credibility strip of verified facts; sections reordered to Work → Experience → Toolkit → About → Contact.
+  The terminal is an optional extra after Contact.
+- **Case studies:** `/work` plus three static pages. The fraud lab adds a verified system map, key decisions,
+  testing and limitations from its README; BOB's World adds a module map from its source. Nothing is padded
+  with placeholders.
+- **SEO:** new title and description, ProfilePage + Person JSON-LD on home, SoftwareSourceCode on case studies,
+  canonical URLs per page, and every route in the sitemap.
+- **Security:** CSP, X-Frame-Options, nosniff, Referrer-Policy and Permissions-Policy, set in `next.config.ts`
+  because Netlify only applied `netlify.toml` headers to static files.
+- **Contact:** your copy, a real optional Company field, and the honeypot renamed so crawlers don't read it as a field.
+- **Quality gates:** `npm run a11y` (axe) and `npm run qa` (seven widths, 200% text, links, targets).
+  They caught and fixed a 3.43:1 contrast failure, sub-24px touch targets and a dead Dynamo link.
+
+Measured (Lighthouse mobile, median of 3; Netlify draft unless noted):
+| Page | Perf | A11y | Best practices | SEO |
+|---|---|---|---|---|
+| Home | 91 | 100 | 100 | 100 (local; draft is noindex by design) |
+| /work/ai-defense-lab | 95 | 100 | 100 | 100 expected (draft noindex) |
+
+Accessibility tree: one H1 per page, each heading announced once, only labeled form fields, skip link first.
+Not measured: field Core Web Vitals (needs real traffic). Lab LCP is 2.3–3.0s.

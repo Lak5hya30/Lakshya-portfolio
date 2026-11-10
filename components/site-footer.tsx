@@ -32,7 +32,7 @@ export function SiteFooter() {
         <button
           type="button"
           className="back-to-top"
-          onClick={() => scrollToSection("top")}
+          onClick={() => (document.getElementById("top") ? scrollToSection("top") : window.scrollTo({ top: 0 }))}
         >
           Back to top <ArrowDown />
         </button>

@@ -68,15 +68,16 @@ export function Hero() {
           </p>
         </div>
         <p className="hero-intro hero-position">{person.positioning}</p>
+        {/* One primary action; résumé secondary; email as a quiet text link. */}
         <div className="hero-intro hero-actions">
-          <Magnetic><a className="button button-primary" href="#work">View projects <ArrowDown /></a></Magnetic>
-          <a className="button" href={person.resume} download>Download résumé <DocIcon /></a>
-          <a className="button button-quiet" href="#contact">Contact me <ArrowUpRight /></a>
+          <Magnetic><a className="button button-primary" href="#work" data-track="cta_view_work">View selected work <ArrowDown /></a></Magnetic>
+          <a className="button" href={person.resume} download data-track="resume_download">Download résumé <DocIcon /></a>
+          <a className="text-link hero-email" href={`mailto:${person.email}`} data-track="email_click">Email me <ArrowUpRight /></a>
         </div>
         <ul className="hero-intro hero-socials" aria-label="Profiles">
           {content.links.map((link) => (
             <li key={link.label}>
-              <a href={link.href} target="_blank" rel="noreferrer" aria-label={`${link.label} (opens in a new tab)`}>
+              <a href={link.href} target="_blank" rel="noreferrer" aria-label={`${link.label} (opens in a new tab)`} data-track={`${link.label.toLowerCase()}_click`}>
                 {socialIcon(link.label)}
               </a>
             </li>
@@ -87,9 +88,11 @@ export function Hero() {
         <DotPortrait active />
         <div className="portrait-index"><span>Based in {person.location}</span><span>2026</span></div>
       </div>
-      <a className="scroll-indicator hero-intro" href="#about" aria-label="Scroll to About">
-        <span className="scroll-track" aria-hidden="true"><span className="scroll-thumb" /></span>
-      </a>
+      <ul className="evidence-strip hero-intro" aria-label="At a glance">
+        {content.evidence.map((item) => (
+          <li key={item.label}><span>{item.label}</span>{item.value}</li>
+        ))}
+      </ul>
     </section>
   );
 }

@@ -33,7 +33,7 @@ export function Skills() {
 
   return (
     <section className="skills section" id="skills" aria-labelledby="skills-title">
-      <div className="section-kicker">04 / Toolkit</div>
+      <div className="section-kicker">03 / Toolkit</div>
       <h2 id="skills-title"><RevealText>A practical stack for complete products.</RevealText></h2>
       {/* One wrapper so the sticky "used in" panel only sticks while the cards are on screen. */}
       <div className="skill-board">

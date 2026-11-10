@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "portrait:build": "node --experimental-strip-types scripts/build-portrait.ts",
-    "review": "node scripts/review.mjs"
+    "review": "node scripts/review.mjs",
+    "a11y": "node scripts/a11y.mjs",
+    "qa": "node scripts/qa.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -24,6 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "axe-core": "^4.10.3",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
     "lighthouse": "^12.8.2",

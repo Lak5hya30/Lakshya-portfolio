@@ -7,12 +7,13 @@
   </head>
   <body>
     <!-- Netlify Forms detects this static form at deploy time; the site's React form posts here. -->
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="company" hidden>
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
       <input type="hidden" name="form-name" value="contact" />
       <input name="name" />
       <input name="email" type="email" />
-      <textarea name="message"></textarea>
       <input name="company" />
+      <textarea name="message"></textarea>
+      <input name="bot-field" />
     </form>
   </body>
 </html>
