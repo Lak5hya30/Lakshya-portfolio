@@ -1,0 +1,13 @@
+# Netlify detects Next.js and runs it with its Next.js runtime (server action, hourly GitHub cache, OG image).
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+  # Canonical URL, Open Graph, sitemap and structured data. Not a secret.
+  NEXT_PUBLIC_SITE_URL = "https://lak5hya-portfolio.netlify.app"
+
+# Secrets go in Netlify → Site configuration → Environment variables, never in this file:
+#   RESEND_API_KEY, CONTACT_FROM_EMAIL (contact form), optional CONTACT_TO_EMAIL, GITHUB_TOKEN
