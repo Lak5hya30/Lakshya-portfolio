@@ -1,25 +1,47 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
-import { sendContact, type ContactState } from "@/app/actions";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { content } from "@/content";
+import { submitContact, validateContact, type ContactField, type ContactStatus } from "@/lib/contact";
 import { Magnetic } from "./magnetic";
 import { RevealText } from "./reveal-text";
 import { ArrowUpRight, DocIcon, socialIcon } from "./icons";
 
-const initial: ContactState = { status: "idle", message: "" };
+type FormState = { status: ContactStatus; message: string; errors: Partial<Record<ContactField, string>> };
+const initial: FormState = { status: "idle", message: "", errors: {} };
 
 export function Contact() {
-  const [state, action, pending] = useActionState(sendContact, initial);
+  const [state, setState] = useState<FormState>(initial);
   const form = useRef<HTMLFormElement>(null);
   const status = useRef<HTMLParagraphElement>(null);
   const [copied, setCopied] = useState(false);
+  const pending = state.status === "sending";
 
+  // Move focus to the result so keyboard and screen-reader users hear it.
   useEffect(() => {
-    if (state.status !== "idle") status.current?.focus();
-  }, [state]);
+    if (state.status !== "idle" && state.status !== "sending") status.current?.focus();
+  }, [state.status]);
 
-  const error = (field: "name" | "email" | "message") => state.fieldErrors?.[field];
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const values = { name: String(data.get("name") ?? ""), email: String(data.get("email") ?? ""), message: String(data.get("message") ?? "") };
+    const errors = validateContact(values);
+    if (Object.keys(errors).length) {
+      setState({ status: "invalid", message: "Check the highlighted fields.", errors });
+      return;
+    }
+    setState({ status: "sending", message: "", errors: {} });
+    try {
+      await submitContact({ ...values, company: String(data.get("company") ?? "") });
+      form.current?.reset();
+      setState({ status: "success", message: "Thanks — your message was sent. I'll reply by email.", errors: {} });
+    } catch {
+      setState({ status: "error", message: `Your message couldn't be sent. Please email me at ${content.person.email}.`, errors: {} });
+    }
+  }
+
+  const error = (field: ContactField) => state.errors[field];
 
   return (
     <section className="contact section" id="contact" aria-labelledby="contact-title">
@@ -43,20 +65,20 @@ export function Contact() {
             <a href={content.person.resume} download><DocIcon />Download résumé</a>
           </div>
         </div>
-        <form ref={form} className="contact-form" action={action} noValidate>
+        <form ref={form} className="contact-form" name="contact" onSubmit={onSubmit} noValidate>
           <div className="field">
             <label htmlFor="contact-name">Name</label>
-            <input id="contact-name" name="name" defaultValue={state.values?.name} autoComplete="name" required minLength={2} maxLength={80} aria-invalid={Boolean(error("name"))} aria-describedby={error("name") ? "contact-name-error" : undefined} />
+            <input id="contact-name" name="name" autoComplete="name" required minLength={2} maxLength={80} aria-invalid={Boolean(error("name"))} aria-describedby={error("name") ? "contact-name-error" : undefined} />
             {error("name") && <span id="contact-name-error" className="field-error">{error("name")}</span>}
           </div>
           <div className="field">
             <label htmlFor="contact-email">Email</label>
-            <input id="contact-email" name="email" defaultValue={state.values?.email} type="email" autoComplete="email" required maxLength={120} aria-invalid={Boolean(error("email"))} aria-describedby={error("email") ? "contact-email-error" : undefined} />
+            <input id="contact-email" name="email" type="email" autoComplete="email" required maxLength={120} aria-invalid={Boolean(error("email"))} aria-describedby={error("email") ? "contact-email-error" : undefined} />
             {error("email") && <span id="contact-email-error" className="field-error">{error("email")}</span>}
           </div>
           <div className="field">
             <label htmlFor="contact-message">Message</label>
-            <textarea id="contact-message" name="message" defaultValue={state.values?.message} rows={5} required minLength={10} maxLength={2000} aria-invalid={Boolean(error("message"))} aria-describedby={error("message") ? "contact-message-error" : undefined} />
+            <textarea id="contact-message" name="message" rows={5} required minLength={10} maxLength={2000} aria-invalid={Boolean(error("message"))} aria-describedby={error("message") ? "contact-message-error" : undefined} />
             {error("message") && <span id="contact-message-error" className="field-error">{error("message")}</span>}
           </div>
           {/* Honeypot for bots; hidden from people and assistive tech. */}

@@ -9,8 +9,8 @@
   # Canonical URL, Open Graph, sitemap and structured data. Not a secret.
   NEXT_PUBLIC_SITE_URL = "https://lak5hya-portfolio.netlify.app"
 
-# Secrets go in Netlify → Site configuration → Environment variables, never in this file:
-#   RESEND_API_KEY, CONTACT_FROM_EMAIL (contact form), optional CONTACT_TO_EMAIL, GITHUB_TOKEN
+# The contact form uses Netlify Forms (public/__forms.html). Submissions are emailed via Forms → notifications.
+# Secrets go in Netlify → Site configuration → Environment variables, never in this file: optional GITHUB_TOKEN
 
 # Declared explicitly: on this site the runtime was not auto-applied in Netlify's server builds (only the
 # Neon extension ran), so the raw .next folder was published and every page returned 404.
