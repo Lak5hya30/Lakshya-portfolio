@@ -1,4 +1,4 @@
-# Netlify detects Next.js and runs it with its Next.js runtime (server action, hourly GitHub cache, OG image).
+# Next.js on Netlify needs the Next.js runtime (server action, hourly GitHub cache, OG image).
 [build]
   command = "npm run build"
   publish = ".next"
@@ -11,3 +11,8 @@
 
 # Secrets go in Netlify → Site configuration → Environment variables, never in this file:
 #   RESEND_API_KEY, CONTACT_FROM_EMAIL (contact form), optional CONTACT_TO_EMAIL, GITHUB_TOKEN
+
+# Declared explicitly: on this site the runtime was not auto-applied in Netlify's server builds (only the
+# Neon extension ran), so the raw .next folder was published and every page returned 404.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
