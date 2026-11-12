@@ -141,7 +141,6 @@ export function Terminal() {
 
   return (
     <section className="terminal-section section" id="terminal" aria-labelledby="terminal-title">
-      <div className="section-kicker">Optional · Terminal</div>
       <div className="terminal-intro">
         <h2 id="terminal-title" className="terminal-heading">Prefer a shell?</h2>
         <p>Everything on this page, one command away. Type <code>help</code> to start.</p>

@@ -114,7 +114,6 @@ export function Portfolio({ github }: { github: ReactNode }) {
         <Experience ref={timelineLine} />
         <Skills />
         <section className="about section" id="about" aria-labelledby="about-title">
-          <div className="section-kicker">04 / About</div>
           <h2 id="about-title"><RevealText>Engineering with clarity, from interface to system.</RevealText></h2>
           <p className="about-intro">{content.person.intro}</p>
           <div className="about-grid">

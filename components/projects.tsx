@@ -53,7 +53,6 @@ export function Projects() {
 
   return (
     <section className="projects section" id="work" aria-labelledby="work-title">
-      <div className="section-kicker">01 / Selected work</div>
       <h2 id="work-title"><RevealText>Built to be useful, not ornamental.</RevealText></h2>
       {filters.length > 1 && (
         <div className="filters" role="group" aria-label="Filter projects by category">

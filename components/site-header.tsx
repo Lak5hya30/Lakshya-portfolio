@@ -5,6 +5,7 @@ import { content } from "@/content";
 import { openPalette, sections } from "@/lib/site";
 import { Magnetic } from "./magnetic";
 import { SearchIcon } from "./icons";
+import { BrandLogo } from "./brand-logo";
 
 const subscribeScroll = (onChange: () => void) => {
   window.addEventListener("scroll", onChange, { passive: true });
@@ -42,7 +43,7 @@ export function SiteHeader() {
 
   return (
     <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
-      <a className="wordmark" href="#top">LG<span className="sr-only"> Lakshya Gupta, back to top</span></a>
+      <a className="wordmark" href="#top" aria-label="Lakshya Gupta, back to top"><BrandLogo /></a>
       <nav ref={nav} aria-label="Primary navigation" className="primary-nav">
         {sections.map((section) => (
           <a key={section.id} href={`#${section.id}`} aria-current={active === section.id ? "true" : undefined}>

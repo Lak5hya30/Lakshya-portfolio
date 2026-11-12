@@ -48,7 +48,6 @@ export function Contact() {
 
   return (
     <section className="contact section" id="contact" aria-labelledby="contact-title">
-      <div className="section-kicker">05 / Contact</div>
       <h2 id="contact-title"><RevealText>Have an internship, a hard problem, or an open-source idea?</RevealText></h2>
       <p className="contact-intro">I&apos;m open to SDE internship opportunities and technical collaborations. If you&apos;re building something where backend, full-stack or Python experience could help, I&apos;d be glad to talk.</p>
       <div className="contact-grid">

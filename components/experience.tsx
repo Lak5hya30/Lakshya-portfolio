@@ -6,7 +6,7 @@ import { RevealText } from "./reveal-text";
 import { ArrowUpRight, ChevronIcon } from "./icons";
 
 export const Experience = forwardRef<HTMLSpanElement>(function Experience(_props, timelineLine) {
-  const [open, setOpen] = useState<Set<number>>(() => new Set([0]));
+  const [open, setOpen] = useState<Set<number>>(() => new Set());
   const toggle = (index: number) =>
     setOpen((current) => {
       const next = new Set(current);
@@ -17,7 +17,6 @@ export const Experience = forwardRef<HTMLSpanElement>(function Experience(_props
 
   return (
     <section className="experience section" id="experience" aria-labelledby="experience-title">
-      <div className="section-kicker">02 / Experience</div>
       <h2 id="experience-title"><RevealText>Work shaped by real systems.</RevealText></h2>
       <div className="timeline">
         <span ref={timelineLine} className="timeline-line" aria-hidden="true" />
